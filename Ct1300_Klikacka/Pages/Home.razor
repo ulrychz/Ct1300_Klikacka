@@ -1,0 +1,31 @@
+﻿@page "/"
+@inject IJSRuntime JS
+
+<PageTitle>Klikačka</PageTitle>
+
+<h1>Klikačka!</h1>
+<table>
+    @for (int i = 0; i < Grafika.Pole.GetLength(0); i++)
+    {
+        var radka = i;
+        <tr>
+            @for (int j = 0; j < Grafika.Pole.GetLength(1); j++)
+            {
+                var sloupec = j;
+                <td class="@Grafika.Pole[radka, sloupec].StyleClassName" @onclick="()=>Grafika.OnCellClick(Grafika.Pole[radka,sloupec])">@Grafika.Pole[i, j].Hodnota</td>
+            }
+        </tr>
+    }
+   
+</table>
+
+Welcome to your new app.
+
+@code{
+    private Models.Grafika Grafika {get;set;} = new Models.Grafika();
+    // private void OnCellClick(Models.Bunka bunka)
+    // {
+    //     var zprava = $"Radka - {bunka.Radka},  sloupec - {bunka.Sloupec}, hodnota - {bunka.Hodnota}";
+    //     JS.InvokeVoidAsync("alert", zprava);
+    // }
+}
