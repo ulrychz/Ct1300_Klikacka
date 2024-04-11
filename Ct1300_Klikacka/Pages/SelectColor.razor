@@ -1,0 +1,34 @@
+﻿@page "/selectColor"
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Vybarvení tabulky</h1>
+
+<table>
+    <tr>
+        @for (int j = 0; j < Grafika.BarvySeznam.Count; j++)
+        {
+            var bunka = Grafika.BarvySeznam[j];
+            <td class="@bunka.StyleClassName" @onclick="()=>Grafika.OnCellClick(bunka)">@bunka.Hodnota</td>
+        }
+    </tr>
+</table>
+
+<table class="mt-2">
+    @for (int i = 0; i < Grafika.Pole.GetLength(0); i++)
+    {
+        <tr>
+            @for (int j = 0; j < Grafika.Pole.GetLength(1); j++)
+            {
+                var bunka = Grafika.Pole[i, j];
+                <td class="@bunka.StyleClassName" @onclick="()=>Grafika.OnCellClick(bunka)">@bunka.Hodnota</td>
+            }
+        </tr>
+    }
+</table>
+
+
+@code {
+    private Models.Grafika Grafika { get; set; } = new Models.Grafika(4, 10, 12);
+
+}
